@@ -7,7 +7,9 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import jp.gr.java_conf.miwax.kioskexample.databinding.ActivityMainBinding
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,6 +40,15 @@ class MainActivity : AppCompatActivity() {
 
         binding.clearDeviceOwnerButton.setOnClickListener {
             kioskUtils.clearDeviceOwner()
+        }
+
+        binding.installApkButton.setOnClickListener {
+            val file = File(getExternalFilesDir(null), "sample.apk")
+            try {
+                kioskUtils.installPackage(file)
+            } catch (e: Exception) {
+                Toast.makeText(this, "Failed to install: $e", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
