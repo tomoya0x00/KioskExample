@@ -35,6 +35,10 @@ class MainActivity : AppCompatActivity() {
         binding.exceptionButton.setOnClickListener {
             throw Exception("Exception!!")
         }
+
+        binding.clearDeviceOwnerButton.setOnClickListener {
+            kioskUtils.clearDeviceOwner()
+        }
     }
 
     override fun onResume() {

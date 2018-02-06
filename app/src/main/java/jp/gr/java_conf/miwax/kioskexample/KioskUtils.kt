@@ -34,6 +34,12 @@ class KioskUtils(private val context: Context) {
     fun hasDeviceOwnerPermission(): Boolean =
             dpm.isAdminActive(deviceAdmin) && dpm.isDeviceOwnerApp(context.packageName)
 
+    fun clearDeviceOwner() {
+        if (dpm.isDeviceOwnerApp(context.packageName)) {
+            dpm.clearDeviceOwnerApp(context.packageName)
+        }
+    }
+
     // 自分自身に対してユーザ確認無しのPinningを許可する
     fun setLockTaskPackage() =
             dpm.setLockTaskPackages(deviceAdmin, arrayOf(context.packageName))
